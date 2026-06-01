@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 
 import ThemeProvider from "@/context/Theme";
 
+import Footer from "../components/footer/index";
 import Navbar from "../components/navigation/navbar/index";
 
 // const geistSans = Geist({
@@ -67,9 +68,19 @@ export default function RootLayout({
     >
       <body className="min-h-full flex flex-col">
         {/* {ThemeProvider({ children })} */}
-        <ThemeProvider attribute="class" defaultTheme="system">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
           <Navbar />
-          {children}
+
+          <main className="flex-1 w-full max-w-7xl mx-auto px-4 py-6 mt-16">
+            {children}
+          </main>
+
+          <Footer />
         </ThemeProvider>
         {/* {children} */}
       </body>

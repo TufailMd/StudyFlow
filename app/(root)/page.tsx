@@ -13,7 +13,7 @@ import {
 
 function page() {
   return (
-    <>
+    <div>
       <div>This is normal font </div>
       <div className="font-inter">This is Inter font And this</div>
       <div className="font-inter-i">This is Inter Italic font</div>
@@ -36,7 +36,7 @@ function page() {
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
-    </>
+    </div>
   );
 }
 
