@@ -28,7 +28,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  "js/ts.tsdk": "./node_modules/typescript/lib",
+  // "js/ts.tsdk": "./node_modules/typescript/lib",
+  "typescript.tsdk": "node_modules/typescript/lib",
 
   "files.exclude": {
     "**/.vscode": true,

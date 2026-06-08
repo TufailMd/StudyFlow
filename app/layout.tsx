@@ -1,22 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import { SessionProvider } from "next-auth/react";
+import { Toaster } from "sonner";
 
+import { auth } from "@/auth";
 import ThemeProvider from "@/context/Theme";
 
 import Footer from "../components/footer/index";
 import Navbar from "../components/navigation/navbar/index";
-
-// const geistSans = Geist({
-//   variable: "--font-geist-sans",
-//   subsets: ["latin"],
-// });
-
-// const geistMono = Geist_Mono({
-//   variable: "--font-geist-mono",
-//   subsets: ["latin"],
-// });
 
 export const metadata: Metadata = {
   title: {
@@ -40,13 +32,13 @@ export const metadata: Metadata = {
 const inter = localFont({
   src: "/fonts/InterVF.ttf",
   variable: "--font-inter",
-  weight: "100, 200, 300, 400, 500",
+  weight: "100 200 300 400 500",
 });
 
 const interI = localFont({
   src: "/fonts/InterIVF.ttf",
   variable: "--font-inter-i",
-  weight: "100, 200, 300, 400, 500",
+  weight: "100 200 300 400 500",
 });
 
 const SpaceGrotesk = localFont({
@@ -55,11 +47,12 @@ const SpaceGrotesk = localFont({
   weight: "300, 400, 500",
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
   return (
     <html
       lang="en"
@@ -67,22 +60,23 @@ export default function RootLayout({
       className={`${inter.variable} ${interI.variable} ${SpaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        {/* {ThemeProvider({ children })} */}
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Navbar />
+        <SessionProvider session={session}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Navbar />
 
-          <main className="flex-1 w-full max-w-7xl mx-auto px-4 py-6 mt-16">
-            {children}
-          </main>
+            <main className="flex-1 w-full max-w-7xl mx-auto px-4 py-6 mt-16">
+              {children}
+            </main>
 
-          <Footer />
-        </ThemeProvider>
-        {/* {children} */}
+            <Footer />
+            <Toaster richColors />
+          </ThemeProvider>
+        </SessionProvider>
       </body>
     </html>
   );

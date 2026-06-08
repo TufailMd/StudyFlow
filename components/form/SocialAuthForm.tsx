@@ -1,4 +1,9 @@
+"use client";
 import Image from "next/image";
+import { signIn } from "next-auth/react";
+import { toast } from "sonner";
+
+import ROUTES from "@/constant/routes";
 
 import Github from "../../public/icons/github.svg";
 import Google from "../../public/icons/google.svg";
@@ -8,9 +13,35 @@ function SocialAuthForm() {
   const BtnClass =
     "background-dark400_light900 body-medium text-dark200_light800 rounded-2 min-h-12 flex-1 px-4 py-3.5";
 
+  const handleSignIn = async (provider: "github" | "google") => {
+    try {
+      // await signIn(provider, { callbackUrl: ROUTES.HOME, redirect: false });
+      await signIn(provider, { callbackUrl: ROUTES.HOME });
+    } catch (error) {
+      console.log(error);
+
+      toast.error("Sign-in failed", {
+        description: "Something went wrong",
+      });
+
+      // toast.error("Sign-in failed", {
+      //   description: "Something went wrong",
+      //   style: {
+      //     background: "#fee2e2",
+      //     color: "#991b1b",
+      //     border: "1px solid #fecaca",
+      //   },
+      // });
+
+      // toast.error("Sign-in failed", {
+      //   className: "bg-red-100 text-red-700 border border-red-300",
+      // });
+    }
+  };
+
   return (
     <div className="mt-10 flex flex-wrap gap-2.5">
-      <Button className={BtnClass}>
+      <Button className={BtnClass} onClick={() => handleSignIn("github")}>
         <Image
           className="invert-colors mr-2.5 object-contain"
           src={Github}
@@ -18,18 +49,18 @@ function SocialAuthForm() {
           width={20}
           height={20}
         />
-        <span>Login in with GitHub</span>
+        <span>Login with GitHub</span>
       </Button>
 
-      <Button className={BtnClass}>
+      <Button className={BtnClass} onClick={() => handleSignIn("google")}>
         <Image
           className="mr-2.5 object-contain"
           src={Google}
-          alt="GitHub"
+          alt="Google"
           width={20}
           height={20}
         />
-        <span>Login in with Google</span>
+        <span>Login with Google</span>
       </Button>
     </div>
   );
