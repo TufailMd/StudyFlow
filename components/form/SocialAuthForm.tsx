@@ -40,7 +40,7 @@ function SocialAuthForm() {
   };
 
   return (
-    <div className="mt-10 flex flex-wrap gap-2.5">
+    <div className="flex flex-wrap gap-2.5">
       <Button className={BtnClass} onClick={() => handleSignIn("github")}>
         <Image
           className="invert-colors mr-2.5 object-contain"
