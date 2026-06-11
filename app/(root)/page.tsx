@@ -9,15 +9,6 @@ async function page() {
   return (
     <>
       <h1 className="h1-bold">Welcome to studyflow</h1>
-      <form
-        action={async () => {
-          "use server";
-
-          await signOut({ redirectTo: ROUTES.SIGN_IN });
-        }}
-      >
-        <Button type="submit">logout</Button>
-      </form>
     </>
   );
 }

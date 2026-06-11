@@ -43,10 +43,7 @@ const AuthForm = <T extends FieldValues>({
 
   // ✅ Fixed: correct spelling + actually calls onSubmit + handles toast
   const handleSubmit: SubmitHandler<T> = async (data) => {
-    const result = await onSubmit(data);
-    if (!result.success) {
-      toast.error("Something went wrong. Please try again.");
-    }
+    // Todo : Authenticate User
   };
 
   const buttonText = formType === "SIGN_IN" ? "Sign In" : "Sign Up";

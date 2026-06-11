@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
 
+import MobileNavigation from "./MobileNavigation";
 import Theme from "./Theme";
 import Logo from "../../../public/images/logo-site.svg";
 
@@ -19,21 +19,22 @@ function Navbar() {
       <p>Search</p>
 
       {/* <div className="h-6 w-6 rounded-full bg-primary-500 text-center text-xs text-light-900 flex"> */}
-      <button className="flex-between gap-5 cursor-pointer  rounded-full bg-primary-500 p-2 text-light-900">
+      {/* <button className="flex-between gap-5 cursor-pointer  rounded-full bg-primary-500 p-2 text-light-900">
         Ask Questions
       </button>
 
       <div className="flex-between gap-5 cursor-pointer  rounded-full bg-primary-500 p-2 text-light-900">
         Notification
-      </div>
+      </div> */}
 
       <div className="flex-between gap-5 cursor-pointer">
         <Theme />
       </div>
-      <div className="flex-between gap-5 cursor-pointer  rounded-full bg-primary-500 p-2 text-light-900">
+
+      <MobileNavigation />
+      {/* <div className="flex-between gap-5 cursor-pointer  rounded-full bg-primary-500 p-2 text-light-900">
         profile
-      </div>
-      {/* </div> */}
+      </div> */}
     </nav>
   );
 }
